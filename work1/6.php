@@ -18,7 +18,6 @@
 </head>
 <style>
     table {
-        /*font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;*/
         font-size: 14px;
         border-collapse: collapse;
         text-align: center;
