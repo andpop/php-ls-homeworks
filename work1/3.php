@@ -5,7 +5,7 @@
     <title>Задание #3</title>
 </head>
 <body>
-    <?php
+<?php
 /*
 Задание #3
 1. Создайте переменную $age
@@ -23,17 +23,17 @@
 вышеописанные диапазоны чисел
 */
 
-    $age = rand(0, 100);
-    if ($age >= 18 and $age <= 65) {
-        echo "Вам еще работать и работать<br>".PHP_EOL;
-    } elseif ($age > 65) {
-        echo "Вам пора на пенсию<br>".PHP_EOL;
-    } elseif ($age >= 1 and $age <=17) {
-        echo "Вам ещё рано работать<br>".PHP_EOL;
-    } else {
-        echo "Неизвестный возраст<br>".PHP_EOL;
-    };
-    ?>
+$age = rand(0, 100);
+if ($age >= 18 and $age <= 65) {
+    echo "Вам еще работать и работать<br>".PHP_EOL;
+} elseif ($age > 65) {
+    echo "Вам пора на пенсию<br>".PHP_EOL;
+} elseif ($age >= 1 and $age <=17) {
+    echo "Вам ещё рано работать<br>".PHP_EOL;
+} else {
+    echo "Неизвестный возраст<br>".PHP_EOL;
+};
+?>
 </body>
 </html>
 
