@@ -17,19 +17,6 @@
 
 $name = 'Андрей';
 $age = '43';
-?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Задание #1</title>
-</head>
-<body>
-<?php
-    echo "Меня зовут: {$name}<br>".PHP_EOL;
-    echo "Мне {$age} года<br>".PHP_EOL;
-    echo '"!|\/\'"\\<br>'.PHP_EOL;
-?>
-</body>
-</html>
-
+echo "Меня зовут: $name".PHP_EOL;
+echo "Мне $age года".PHP_EOL;
+echo '"!|\/\'"\\'.PHP_EOL;

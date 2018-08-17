@@ -1,10 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Задание #2</title>
-</head>
-<body>
 <?php
 /*
 Задание #2
@@ -15,11 +8,8 @@
 предоставленные числа из пункта 1 должны быть указаны в константах.
 */
 
-    const TOTAL_FIGS = 80;
-    const FELT_FIGS = 23;
-    const PENCIL_FIGS = 40;
-    $paintFigs = TOTAL_FIGS - FELT_FIGS - PENCIL_FIGS;
-    echo "Написано красками: $paintFigs".PHP_EOL;
-?>
-</body>
-</html>
+const TOTAL_FIGS = 80;
+const FELT_FIGS = 23;
+const PENCIL_FIGS = 40;
+$paintFigs = TOTAL_FIGS - FELT_FIGS - PENCIL_FIGS;
+echo "Написано красками: $paintFigs".PHP_EOL;
