@@ -39,18 +39,18 @@
 <body>
     <table>
         <tr>
-        <?php for ($rowCell = 1; $rowCell <= 10; $rowCell++) { ?>
-            <th><?= $rowCell ?></th>
+        <?php for ($rowNumberl = 1; $rowNumberl <= 10; $rowNumberl++) { ?>
+            <th><?= $rowNumberl ?></th>
         <?php }; ?>
         </tr>
-        <?php for ($columnCell = 2; $columnCell <=10; $columnCell++) { ?>
+        <?php for ($columnNumber = 2; $columnNumber <=10; $columnNumber++) { ?>
             <tr>
             <?php
-            for ($rowCell = 1; $rowCell <= 10; $rowCell++) {
-                $product = $columnCell * $rowCell;
-                if (($columnCell % 2 == 0) and ($rowCell % 2 == 0)) {
+            for ($rowNumberl = 1; $rowNumberl <= 10; $rowNumberl++) {
+                $product = $columnNumber * $rowNumberl;
+                if (($columnNumber % 2 == 0) and ($rowNumberl % 2 == 0)) {
                     $result = "({$product})";
-                } elseif (($columnCell % 2 == 1) and ($rowCell % 2 == 1)) {
+                } elseif (($columnNumber % 2 == 1) and ($rowNumberl % 2 == 1)) {
                     $result = "[{$product}]";
                 } else {
                     $result = $product;

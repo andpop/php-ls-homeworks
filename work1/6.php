@@ -40,19 +40,19 @@
     <table>
         <tr>
         <?php
-        for ($rowCell = 1; $rowCell <= 10; $rowCell++) {
-            echo "<th>$rowCell</th>";
+        for ($rowNumber = 1; $rowNumber <= 10; $rowNumber++) {
+            echo "<th>$rowNumber</th>";
         };
         ?>
         </tr>
         <?php
-        for ($columnCell = 2; $columnCell <=10; $columnCell++) {
+        for ($columnNumber = 2; $columnNumber <=10; $columnNumber++) {
             echo "<tr>";
-            for ($rowCell = 1; $rowCell <= 10; $rowCell++) {
-                $product = $columnCell * $rowCell;
-                if (($columnCell % 2 == 0) and ($rowCell % 2 == 0)) {
+            for ($rowNumber = 1; $rowNumber <= 10; $rowNumber++) {
+                $product = $columnNumber * $rowNumber;
+                if (($columnNumber % 2 == 0) and ($rowNumber % 2 == 0)) {
                     $result = "({$product})";
-                } elseif (($columnCell % 2 == 1) and ($rowCell % 2 == 1)) {
+                } elseif (($columnNumber % 2 == 1) and ($rowNumber % 2 == 1)) {
                     $result = "[{$product}]";
                 } else {
                     $result = $product;
