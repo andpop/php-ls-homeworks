@@ -58,11 +58,11 @@ function task2()
 3. В остальных случаях выдавать корректную ошибку.*/
 function task3($maxRowNumber, $maxColumnNumber)
 {
-    if (!(is_int($maxRowNumber) && $maxRowNumber >0)) {
+    if (!(is_int($maxRowNumber) && $maxRowNumber > 0)) {
         echo "Ошибка! Параметры функции должны быть целыми положительными числами.<br>";
         return;
     };
-    if (!(is_int($maxColumnNumber) && $maxColumnNumber >0)) {
+    if (!(is_int($maxColumnNumber) && $maxColumnNumber > 0)) {
         echo "Ошибка! Параметры функции должны быть целыми положительными числами.<br>";
         return;
     };

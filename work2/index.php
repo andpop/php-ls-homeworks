@@ -49,7 +49,7 @@ echo "<br>";
 <hr>
 <h2>Задача 3</h2>
 <?php
-task3(3, 5);
+task3(7, 7);
 echo "<br>";
 ?>
 <hr>
