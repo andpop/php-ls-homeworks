@@ -15,6 +15,17 @@ echo "<br>";
 echo task1("123");
 ?>
 <hr>
+<h2>Задача 2</h2>
+<?php
+$result = task2("*", 2, 3, 4);
+if (is_numeric($result)) {
+    echo  $result.'<br>';
+} else {
+    echo  'Ошибка! '.$result.'<br>';
+};
+echo "<br>";
+?>
+<hr>
 </body>
 </html>
 
