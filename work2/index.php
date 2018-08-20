@@ -53,6 +53,11 @@ task3(7, 7);
 echo "<br>";
 ?>
 <hr>
+<h2>Задача 4</h2>
+<?php
+task4();
+?>
+<hr>
 
 </body>
 </html>

@@ -82,3 +82,15 @@ function task3($maxRowNumber, $maxColumnNumber)
     };
     echo "</table>".PHP_EOL;
 }
+
+/*1. Выведите информацию о текущей дате в формате 31.12.2016 23:59
+2. Выведите unixtime время соответствующее 24.02.2016 00:00:00.*/
+function task4()
+{
+    $dateFormat = 'd.m.Y H:i';
+    echo 'Текущая дата: ';
+    echo date($dateFormat).PHP_EOL.'<br>';
+
+    echo 'Unix-время для даты 24.02.2016: ';
+    echo mktime(0, 0, 0, 2, 24, 2016).PHP_EOL.'<br>';
+}
