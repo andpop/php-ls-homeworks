@@ -44,10 +44,11 @@ $cars = [
 
 foreach ($cars as $carName => $carProperties) {
     echo "CAR $carName".PHP_EOL;
-    $s = "";
+    echo "{$carProperties['model']} - {$carProperties['speed']} - {$carProperties['doors']} - {$carProperties['year']}".PHP_EOL;
+/*    $s = "";
     foreach ($carProperties as $carProperty) {
         $s .= $carProperty." ";
     }
-    echo $s.PHP_EOL;
+    echo $s.PHP_EOL;*/
     echo "-------------------------------------".PHP_EOL;
 }

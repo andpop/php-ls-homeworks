@@ -51,11 +51,12 @@ X5 ​ 120 ​ 5 ​ 2015
 
     foreach ($cars as $carName => $carProperties) {
         echo "CAR {$carName}<br>".PHP_EOL;
-        $s = "";
+        echo "{$carProperties['model']} - {$carProperties['speed']} - {$carProperties['doors']} - {$carProperties['year']}".PHP_EOL;
+/*        $s = "";
         foreach ($carProperties as $carProperty) {
             $s .= $carProperty." ";
         }
-        echo $s."<br>".PHP_EOL;
+        echo $s."<br>".PHP_EOL;*/
         echo "<hr>".PHP_EOL;
     }
     ?>
