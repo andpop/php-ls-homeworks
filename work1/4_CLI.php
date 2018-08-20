@@ -9,29 +9,20 @@ $day равно числам 6 или 7
 4. Выведите фразу “Неизвестный день”, если значение*/
 
 $day = rand(0, 10);
+echo $day.PHP_EOL;
 $workday = "Это рабочий день";
 $weekend = "Это выходной день";
 $unknownDay = "Неизвестный день";
 
 switch ($day) {
     case 1:
-        echo $workday.PHP_EOL;
-        break;
     case 2:
-        echo $workday.PHP_EOL;
-        break;
     case 3:
-        echo $workday.PHP_EOL;
-        break;
     case 4:
-        echo $workday.PHP_EOL;
-        break;
     case 5:
         echo $workday.PHP_EOL;
         break;
     case 6:
-        echo $weekend.PHP_EOL;
-        break;
     case 7:
         echo $weekend.PHP_EOL;
         break;
