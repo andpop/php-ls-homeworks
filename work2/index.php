@@ -58,6 +58,16 @@ echo "<br>";
 task4();
 ?>
 <hr>
+<h2>Задача 5</h2>
+<?php
+task5();
+?>
+<hr>
+<h2>Задача 6</h2>
+<?php
+task6("test.txt");
+?>
+<hr>
 
 </body>
 </html>

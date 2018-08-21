@@ -94,3 +94,35 @@ function task4()
     echo 'Unix-время для даты 24.02.2016: ';
     echo mktime(0, 0, 0, 2, 24, 2016).PHP_EOL.'<br>';
 }
+
+/*1. Дана строка: “Карл у Клары украл Кораллы”. удалить из этой строки все заглавные
+буквы “К”.
+2. Дана строка “Две бутылки лимонада”. Заменить “Две”, на “Три”. По желанию
+дополнить задание.*/
+function task5()
+{
+    $sourceString1 = 'Карл у Клары украл Кораллы';
+    $sourceString2 = 'Две бутылки лимонада';
+
+    $resultString1 = str_replace('К', '', $sourceString1);
+    $resultString2 = str_replace('Две', 'Три', $sourceString2);
+    echo "{$sourceString1} => {$resultString1}<br>".PHP_EOL;
+    echo "{$sourceString2} => {$resultString2}<br>".PHP_EOL;
+}
+
+/*1. Создайте файл test.txt средствами PHP. Поместите в него текст - “Hello again!”
+2. Напишите функцию, которая будет принимать имя файла, открывать файл и
+выводить содержимое на экран.*/
+function task6($fileName)
+{
+    file_put_contents("test.txt", "Hello again!");
+
+    if (!file_exists($fileName)) {
+        echo "Файл $fileName не найден.<br>".PHP_EOL;
+        return;
+    };
+
+    $content = file_get_contents($fileName);
+    echo "Содержимое файла {$fileName}:<br>".PHP_EOL;
+    echo $content.'<br>'.PHP_EOL;
+}
