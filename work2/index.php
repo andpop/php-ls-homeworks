@@ -32,7 +32,7 @@ require('src/functions.php');
 <h2>Задача 1</h2>
 <?php
 echo task1(["1 элемент", "2 элемент", "3 элемент"], true);
-echo "<br>";
+//echo "<br>";
 echo task1("123");
 ?>
 <hr>
@@ -44,13 +44,11 @@ if (is_numeric($result)) {
 } else {
     echo  'Ошибка! '.$result.'<br>';
 };
-echo "<br>";
 ?>
 <hr>
 <h2>Задача 3</h2>
 <?php
 task3(7, 7);
-echo "<br>";
 ?>
 <hr>
 <h2>Задача 4</h2>
