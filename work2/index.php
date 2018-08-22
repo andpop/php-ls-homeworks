@@ -44,6 +44,13 @@ if (is_numeric($result)) {
 } else {
     echo  'Ошибка! '.$result.'<br>';
 };
+$result = task2_2("*", 2, 3, 4);
+if (is_numeric($result)) {
+    echo  $result.'<br>';
+} else {
+    echo  'Ошибка! '.$result.'<br>';
+};
+
 ?>
 <hr>
 <h2>Задача 3</h2>
