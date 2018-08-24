@@ -17,6 +17,11 @@ task1();
 <?php
 task3(50, 100);
 ?>
+<br>
+<h2>Задача 4</h2>
+<?php
+task4();
+?>
 
 </body>
 </html>

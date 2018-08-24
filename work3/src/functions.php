@@ -82,3 +82,22 @@ function task3($minArrLength, $maxArrLength)
     }
     echo "Сумма четных чисел в файле равна {$sum}.<br>".PHP_EOL;
 }
+
+/**
+ * 1. С помощью PHP запросить данные по адресу:
+ * https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json
+ * 2. Вывести title и page_id
+ */
+function task4()
+{
+    $url = 'https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json';
+    $content = file_get_contents($url);
+    $pages = json_decode($content, true)['query']['pages'];
+    $arrKeys = array_keys($pages);
+    $page = $pages[$arrKeys[0]];
+    $title = $page['title'];
+    $pageId = $page['pageid'];
+
+    echo "Данные из {$url}:<br>".PHP_EOL;
+    echo "title = {$title}, pageid = {$pageId}<br>".PHP_EOL;
+}
