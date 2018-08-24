@@ -103,6 +103,10 @@ function task2()
 
     function checkDifferencies()
     {
+        $pathJsonFile1 = "./data/output.json";
+        $pathJsonFile2 = "./data/output.json";
+        $contentJSON1 = json_decode(file_get_contents($pathJsonFile1), true);
+        $contentJSON2 = json_decode(file_get_contents($pathJsonFile2), true);
 
     }
 
