@@ -60,7 +60,49 @@ function task1()
  */
 function task2()
 {
+    function saveJSON()
+    {
+        $orders =
+            [
+                "orderID" => 12345,
+                "name" => "Ваня Иванов",
+                "email" => "ivanov@example.com",
+                "content" =>
+                    [
+                        [
+                            "productID" => 34,
+                            "productName" => "Супер товар",
+                            "quantity" => 1
+                        ],
+                        [
+                            "productID" => 56,
+                            "productName" => "Чудо товар",
+                            "quantity" => 3
+                        ]
+                    ],
+                "orderCompleted" => true
+            ];
+        $ordersJSON = json_encode($orders, JSON_UNESCAPED_UNICODE);
+        $pathJsonFile = "./data/output.json";
+        file_put_contents($pathJsonFile, $ordersJSON);
+    };
 
+    function changeJSON()
+    {
+        $pathJsonFile = "./data/output.json";
+        $contentJSON = json_decode(file_get_contents($pathJsonFile), true);
+        $isNeedChange = (rand(0, 1) == 1);
+        if ($isNeedChange) {
+          $contentJSON['content'][0]['productName'] = 'Мега-хит';
+        };
+        $ordersJSON = json_encode($contentJSON, JSON_UNESCAPED_UNICODE);
+        $pathJsonFile = "./data/output2.json";
+        file_put_contents($pathJsonFile, $ordersJSON);
+
+    };
+
+    saveJSON();
+    changeJSON();
 }
 
 /**
