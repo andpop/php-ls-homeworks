@@ -13,6 +13,10 @@ require('src/functions.php');
 <?php
 task1();
 ?>
+<h2>Задача 3</h2>
+<?php
+task3(50, 100);
+?>
 
 </body>
 </html>

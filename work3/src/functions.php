@@ -51,3 +51,34 @@ function task1()
     }
     echo "Total: <strong>{$itemNumber} items</strong><br>".PHP_EOL;
 }
+
+/**
+ * 1. Программно создайте массив, в котором перечислено не менее 50 случайных чисел от 1 до 100
+ * 2. Сохраните данные в файл csv
+ * 3. Откройте файл csv и посчитайте сумму четных чисел
+ */
+function task3($minArrLength, $maxArrLength)
+{
+    // Создаем массив
+    $arr = [];
+    $arrLength = rand($minArrLength, $maxArrLength);
+    for ($i = 1; $i <= $arrLength; $i++) {
+        $arr[] = rand(1, 100);
+    }
+
+    // Записываем массив в csv-файл
+    $file = fopen('./data/data.csv', 'w');
+    fputcsv($file, $arr, ';');
+    fclose($file);
+
+    // Читаем массив из csv-файла
+    $file = fopen('./data/data.csv', 'r');
+    $arr2 = fgetcsv($file, 0, ';');
+    fclose($file);
+    // Считаем сумму четных чисел в массиве
+    $sum = 0;
+    foreach ($arr2 as $item) {
+        $sum += ($item % 2 == 0 ? $item : 0 );
+    }
+    echo "Сумма четных чисел в файле равна {$sum}.<br>".PHP_EOL;
+}
