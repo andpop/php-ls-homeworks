@@ -31,48 +31,8 @@ require('src/functions.php');
 <body>
 <h2>Задача 1</h2>
 <?php
-echo task1(["1 элемент", "2 элемент", "3 элемент"], true);
-//echo "<br>";
-echo task1("123");
+task1();
 ?>
-<hr>
-<h2>Задача 2</h2>
-<?php
-$result = task2("*", 2, 3, 4);
-if (is_numeric($result)) {
-    echo  $result.'<br>';
-} else {
-    echo  'Ошибка! '.$result.'<br>';
-};
-$result = task2_2("*", 2, 3, 4);
-if (is_numeric($result)) {
-    echo  $result.'<br>';
-} else {
-    echo  'Ошибка! '.$result.'<br>';
-};
-
-?>
-<hr>
-<h2>Задача 3</h2>
-<?php
-task3(7, 7);
-?>
-<hr>
-<h2>Задача 4</h2>
-<?php
-task4();
-?>
-<hr>
-<h2>Задача 5</h2>
-<?php
-task5();
-?>
-<hr>
-<h2>Задача 6</h2>
-<?php
-task6("test.txt");
-?>
-<hr>
 
 </body>
 </html>
