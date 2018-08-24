@@ -5,13 +5,17 @@ require('src/functions.php');
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Домашнее задание #2</title>
+    <title>Домашнее задание #3</title>
 </head>
 
 <body>
 <h2>Задача 1</h2>
 <?php
 task1();
+?>
+<h2>Задача 2</h2>
+<?php
+task2();
 ?>
 <h2>Задача 3</h2>
 <?php

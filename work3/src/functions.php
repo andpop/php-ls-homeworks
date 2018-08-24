@@ -53,6 +53,17 @@ function task1()
 }
 
 /**
+ * 1. Создайте массив, в котором имеется как минимум 1 уровень вложенности. Преобразуйте его в JSON. Сохраните как output.json
+ * 2. Откройте файл output.json. Случайным образом, используя функцию rand(), решите изменять данные или нет.
+ * Сохраните как output2.json
+ * 3. Откройте оба файла. Найдите разницу и выведите информацию об отличающихся элементах
+ */
+function task2()
+{
+
+}
+
+/**
  * 1. Программно создайте массив, в котором перечислено не менее 50 случайных чисел от 1 до 100
  * 2. Сохраните данные в файл csv
  * 3. Откройте файл csv и посчитайте сумму четных чисел
@@ -93,8 +104,9 @@ function task4()
     $url = 'https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json';
     $content = file_get_contents($url);
     $pages = json_decode($content, true)['query']['pages'];
-    $arrKeys = array_keys($pages);
-    $page = $pages[$arrKeys[0]];
+    // В $page присваиваем первый элемент массива $pages
+    reset($pages);
+    $page = current($pages);
     $title = $page['title'];
     $pageId = $page['pageid'];
 
