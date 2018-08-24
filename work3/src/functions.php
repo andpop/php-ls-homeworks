@@ -101,8 +101,14 @@ function task2()
 
     };
 
+    function checkDifferencies()
+    {
+
+    }
+
     saveJSON();
     changeJSON();
+    checkDifferencies();
 }
 
 /**
