@@ -105,8 +105,7 @@ function task4()
     $content = file_get_contents($url);
     $pages = json_decode($content, true)['query']['pages'];
     // В $page присваиваем первый элемент массива $pages
-    reset($pages);
-    $page = current($pages);
+    $page = reset($pages);
 
     $title = $page['title'];
     $pageId = $page['pageid'];
