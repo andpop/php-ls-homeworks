@@ -107,6 +107,7 @@ function task4()
     // В $page присваиваем первый элемент массива $pages
     reset($pages);
     $page = current($pages);
+
     $title = $page['title'];
     $pageId = $page['pageid'];
 
