@@ -92,6 +92,7 @@ function task2()
         $pathJsonFile = "./data/output.json";
         $contentJSON = json_decode(file_get_contents($pathJsonFile), true);
         $isNeedChange = (rand(0, 1) == 1);
+//        echo $isNeedChange;
         if ($isNeedChange) {
           $contentJSON['content'][0]['productName'] = 'Мега-хит';
         };
@@ -104,9 +105,18 @@ function task2()
     function checkDifferencies()
     {
         $pathJsonFile1 = "./data/output.json";
-        $pathJsonFile2 = "./data/output.json";
-        $contentJSON1 = json_decode(file_get_contents($pathJsonFile1), true);
-        $contentJSON2 = json_decode(file_get_contents($pathJsonFile2), true);
+        $pathJsonFile2 = "./data/output2.json";
+        $content1 = json_decode(file_get_contents($pathJsonFile1), true);
+        $content2 = json_decode(file_get_contents($pathJsonFile2), true);
+//        $difference = array_diff($content1, $content2);
+//        print_r($difference);
+        foreach ($content1 as $key=>$value) {
+            if (!is_array($value)) {
+                echo $value.'<br>';
+            } else {
+                print_r($value).'<br>';
+            }
+        }
 
     }
 
