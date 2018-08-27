@@ -60,6 +60,9 @@ function task1()
  */
 function task2()
 {
+    /**
+     * Сохраняем JSON во внешний файл output.json
+     */
     function saveJSON()
     {
         $orders =
@@ -87,6 +90,9 @@ function task2()
         file_put_contents($pathJsonFile, $ordersJSON);
     };
 
+    /**
+     * С вероятностью 0.5 меняем значения одного ключа из output.json и записываем результат в output2.json
+     */
     function changeJSON()
     {
         $pathJsonFile = "./data/output.json";
@@ -99,61 +105,90 @@ function task2()
         $ordersJSON = json_encode($contentJSON, JSON_UNESCAPED_UNICODE);
         $pathJsonFile = "./data/output2.json";
         file_put_contents($pathJsonFile, $ordersJSON);
-
     };
 
+    /**
+     * Определяем разницу между файлами output.json и output2.json
+     * Для этого:
+     * 1. Переводим json-файлы в плоский формат (файлы temp1.csv и temp2.csv)
+     * 2. Считываем данные из temp1.csv и temp2.csv в одномерные массивы linearArr1 и linearArr2
+     * 3. Сравниваем элементы массивов linearArr1 и linearArr2
+     */
     function checkDifferencies()
     {
-        function makeLinearArray1($item, $key)
+        /**
+         * Добавляет в файл temp1.txt содержимое текущего элемента output.json в линейном виде
+         * @param $item
+         * @param $key
+         */
+        function addJsonItemToTempFile1($item, $key)
         {
-//            global $str1;
-
-            $f = fopen("123.txt", 'a+');
+            $f = fopen("./data/temp1.csv", 'a+');
             $complexItem = $key.'=>'.$item.';';
             fwrite($f, $complexItem);
             fclose($f);
-
-//            array_push($linearArray1, $complexItem);
-//            echo $complexItem;
-//            $linearArray1[0] = "$key=>$item";
         };
+
+        /**
+         * Добавляет в файл temp2.txt содержимое текущего элемента output2.json в линейном виде
+         * @param $item
+         * @param $key
+         */
+        function addJsonItemToTempFile2($item, $key)
+        {
+            $f = fopen("./data/temp2.csv", 'a+');
+            $complexItem = $key.'=>'.$item.';';
+            fwrite($f, $complexItem);
+            fclose($f);
+        };
+
+        function delTempFiles($fileName1, $fileName2)
+        {
+          if (file_exists($fileName1)) {
+              unlink($fileName1);
+          }
+          if (file_exists($fileName2)) {
+              unlink($fileName2);
+          }
+        };
+
+        function getTempFileContent($fileName)
+        {
+            $content = file_get_contents($fileName);
+            return explode(';', $content);
+        };
+
 
         $pathJsonFile1 = "./data/output.json";
         $pathJsonFile2 = "./data/output2.json";
+        $pathTempFile1 = "./data/temp1.csv";
+        $pathTempFile2 = "./data/temp2.csv";
+
         $content1 = json_decode(file_get_contents($pathJsonFile1), true);
         $content2 = json_decode(file_get_contents($pathJsonFile2), true);
 
+        delTempFiles($pathTempFile1, $pathTempFile2);
 
-        $linearArray1 = [];
-        $linearArray1[0] = 1;
+        array_walk_recursive($content1, 'addJsonItemToTempFile1');
+        array_walk_recursive($content2, 'addJsonItemToTempFile2');
 
-        array_walk_recursive($content1, 'makeLinearArray1');
-        echo 's=', $str1;
-//        print_r($linearArray1);
+        $linearArr1 = getTempFileContent($pathTempFile1);
+        $linearArr2 = getTempFileContent($pathTempFile2);
+
+        $difference = array_diff($linearArr1, $linearArr2);
+        if (count($difference) == 0) {
+            echo "В JSON-файлах различий не обнаружено.<br>".PHP_EOL;
+        } else {
+            echo "В JSON-файлах обнаружены различия:<br>".PHP_EOL;
+            foreach ($difference as $key=>$value) {
+                echo 'output.json: <b>'.$linearArr1[$key].'</b>   output2.json: <b>'.$linearArr2[$key].'</b><br>';
+            };
+        };
 
 //        foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($content1),
 //            RecursiveIteratorIterator::CATCH_GET_CHILD) as $key => $value) {
 //            echo 'My node ' . $key . ' with value ' . $value . '<br>'.PHP_EOL;
 //        }
-//        echo "<hr>";
-//        array_walk_recursive($content2, 'test_print');
-
-//        echo serialize($content1).'<br>';
-//        echo serialize($content2).'<br>';
-//        echo "<pre>";
-//        var_dump($content1);
-//        echo "</pre>";
-
-//        $difference = array_diff($content1, $content2);
-//        print_r($difference);
-//        foreach ($content1 as $key=>$value) {
-//            if (!is_array($value)) {
-//                echo $value.'<br>';
-//            } else {
-//                print_r($value).'<br>';
-//            }
-//        }
-
     }
 
     saveJSON();
