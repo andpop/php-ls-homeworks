@@ -123,6 +123,7 @@ function task2()
         $content1 = json_decode(file_get_contents($pathJsonFile1), true);
         $content2 = json_decode(file_get_contents($pathJsonFile2), true);
 
+
         $linearArray1 = [];
         $linearArray1[0] = 1;
 
