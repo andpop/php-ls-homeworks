@@ -104,19 +104,53 @@ function task2()
 
     function checkDifferencies()
     {
+        function makeLinearArray1($item, $key, &$str1)
+        {
+//            global $str1;
+            echo $str1.'<br>';
+            $complexItem = $key.'=>'.$item;
+            $str1 = $complexItem;
+
+//            array_push($linearArray1, $complexItem);
+//            echo $complexItem;
+//            $linearArray1[0] = "$key=>$item";
+        };
+
         $pathJsonFile1 = "./data/output.json";
         $pathJsonFile2 = "./data/output2.json";
         $content1 = json_decode(file_get_contents($pathJsonFile1), true);
         $content2 = json_decode(file_get_contents($pathJsonFile2), true);
+
+        $linearArray1 = [];
+        $linearArray1[0] = 1;
+        $str1 = '123';
+
+        array_walk_recursive($content1, 'makeLinearArray1', $str1);
+        echo 's=', $str1;
+//        print_r($linearArray1);
+
+//        foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($content1),
+//            RecursiveIteratorIterator::CATCH_GET_CHILD) as $key => $value) {
+//            echo 'My node ' . $key . ' with value ' . $value . '<br>'.PHP_EOL;
+//        }
+//        echo "<hr>";
+//        array_walk_recursive($content2, 'test_print');
+
+//        echo serialize($content1).'<br>';
+//        echo serialize($content2).'<br>';
+//        echo "<pre>";
+//        var_dump($content1);
+//        echo "</pre>";
+
 //        $difference = array_diff($content1, $content2);
 //        print_r($difference);
-        foreach ($content1 as $key=>$value) {
-            if (!is_array($value)) {
-                echo $value.'<br>';
-            } else {
-                print_r($value).'<br>';
-            }
-        }
+//        foreach ($content1 as $key=>$value) {
+//            if (!is_array($value)) {
+//                echo $value.'<br>';
+//            } else {
+//                print_r($value).'<br>';
+//            }
+//        }
 
     }
 
