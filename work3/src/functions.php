@@ -104,12 +104,14 @@ function task2()
 
     function checkDifferencies()
     {
-        function makeLinearArray1($item, $key, &$str1)
+        function makeLinearArray1($item, $key)
         {
 //            global $str1;
-            echo $str1.'<br>';
-            $complexItem = $key.'=>'.$item;
-            $str1 = $complexItem;
+
+            $f = fopen("123.txt", 'a+');
+            $complexItem = $key.'=>'.$item.';';
+            fwrite($f, $complexItem);
+            fclose($f);
 
 //            array_push($linearArray1, $complexItem);
 //            echo $complexItem;
@@ -123,9 +125,8 @@ function task2()
 
         $linearArray1 = [];
         $linearArray1[0] = 1;
-        $str1 = '123';
 
-        array_walk_recursive($content1, 'makeLinearArray1', $str1);
+        array_walk_recursive($content1, 'makeLinearArray1');
         echo 's=', $str1;
 //        print_r($linearArray1);
 
