@@ -20,7 +20,7 @@ function task1()
     $items = $xml->Items->Item;
 //    var_dump($items);
 
-    echo "<hr>".PHP_EOL;
+    echo str_repeat('=', 80).'<br>'.PHP_EOL;
     echo "Purchase order: <strong>{$orderNumber}</strong>  Date: <strong>{$orderDate}</strong><br><br>".PHP_EOL;
     echo "<strong>Shipping address:</strong><br>".PHP_EOL;
     echo "{$shippingAddress->Name}<br>".PHP_EOL;
@@ -34,7 +34,8 @@ function task1()
     echo "{$billingAddress->City}, {$billingAddress->State}, {$billingAddress->Zip}<br>".PHP_EOL;
     echo "{$billingAddress->Country}<br>".PHP_EOL;
     echo "<br>";
-    echo "Delivery notes: <i>{$deliveryNotes}</i><br><hr>".PHP_EOL;
+    echo "Delivery notes: <i>{$deliveryNotes}</i><br>".PHP_EOL;
+    echo str_repeat('=', 80).'<br>'.PHP_EOL;
 
     $itemNumber = 0;
     foreach ($items as $item) {
@@ -46,10 +47,10 @@ function task1()
         echo "Price: \${$item->USPrice}<br>".PHP_EOL;
         echo "Ship date: {$item->ShipDate}<br>".PHP_EOL;
         echo "Comment: {$item->Comment}<br>".PHP_EOL;
-//        var_dump($item);
-        echo "<hr>";
+        echo str_repeat('-', 120).'<br>'.PHP_EOL;
     }
     echo "Total: <strong>{$itemNumber} items</strong><br>".PHP_EOL;
+    echo str_repeat('=', 80).'<br>'.PHP_EOL;
 }
 
 /**
@@ -185,6 +186,7 @@ function task2()
             };
         };
 
+//        Пробовал формировать линейный массив через рекурсивный итератор - не получилось, не входит внутрь вложенного массива
 //        foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($content1),
 //            RecursiveIteratorIterator::CATCH_GET_CHILD) as $key => $value) {
 //            echo 'My node ' . $key . ' with value ' . $value . '<br>'.PHP_EOL;
@@ -243,6 +245,6 @@ function task4()
     $title = $page['title'];
     $pageId = $page['pageid'];
 
-    echo "Данные из {$url}:<br>".PHP_EOL;
-    echo "title = {$title}, pageid = {$pageId}<br>".PHP_EOL;
+    echo "<em>Данные из {$url}:</em><br>".PHP_EOL;
+    echo "<b>title = {$title}, pageid = {$pageId}</b><br>".PHP_EOL;
 }
