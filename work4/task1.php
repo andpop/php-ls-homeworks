@@ -1,64 +1,60 @@
 <?php
 interface I_Tariff
 {
-    public function calculateTripPrice($distance, $hours, $minutes, $driverBirthday, $isGPS = null, $isAdditionalDriver = null);
+    public function calculateTripPrice($distance, $hours, $minutes, $age, $isGPS = null, $isAdditionalDriver = null);
 };
+
+trait AdditionalService
+{
+    function gpsPrice($hour, $minute )
+    {
+        define("GPS_PRICE", 15);
+
+        $time = $hour;
+        if ($minute > 0) {
+            $time++;
+        }
+        $gpsPrice = GPS_PRICE * $time;
+        return $gpsPrice;
+    }
+
+    function additionalDriverPrice()
+    {
+        define("ADDITIONAL_DRIVER_PRICE", 100);
+
+        return ADDITIONAL_DRIVER_PRICE;
+    }
+}
 
 abstract class A_Tariff implements I_Tariff
 {
     protected $pricePerKilometer;   // Цена за километр
     protected $pricePerMinute;      // Цена за минуту
-    protected $distance;
-    protected $hours;
-    protected $minutes;
-    protected $driverAge;
-    protected $isGPS;
-    protected $isAdditionalDriver;
+    protected $isGPS = false;
+    protected $isAdditionalDriver = false;
 
-
-    public function __construct($distance, $hours, $minutes, $driverBirthday, $isGPS = null, $isAdditionalDriver = null)
-    {
-        $this->distance = $distance;
-        $this->hours = $hours;
-        $this->minutes = $minutes;
-        $this->driverAge = $this->calculateAge($driverBirthday);
-        $this->isGPS = isset($isGPS);
-        $this->isAdditionalDriver = isset($this->isAdditionalDriver);
-    }
-
-    /**
-     * Вычисление возраста человека по дню его рождения
-     * @param string $birthday - дата рождения в формате 'день.месяц.год'
-     * @return integer - возраст на текущую дату
-     */
-    protected function calculateAge(string $birthday)
-    {
-        $birthdayTimestamp = strtotime($birthday);
-        $age = date('Y') - date('Y', $birthdayTimestamp);
-        if (date('md', $birthdayTimestamp) > date('md')) {
-            $age--;
-        }
-        return $age;
-    }
 };
 
 class TariffBase extends A_Tariff
 {
-    public function __construct($distance, $hours, $minutes, $driverBirthday, $isGPS = null, $isAdditionalDriver = null)
+    public function __construct()
     {
-        parent::__construct($distance, $hours, $minutes, $driverBirthday, $isGPS, $isAdditionalDriver);
         $this->pricePerMinute = 3;
         $this->pricePerKilometer = 10;
     }
 
-    public function calculateTripPrice($distance, $hours, $minutes, $driverBirthday, $isGPS = null, $isAdditionalDriver = null)
+    use AdditionalService;
+
+    public function calculateTripPrice($distance, $hours, $minutes, $age, $isGPS = null, $isAdditionalDriver = null)
     {
-        $tripPrice = $this->pricePerKilometer * $this->distance + $this->pricePerMinute * ($this->$hours * 60 + $this->$minutes);
+        $tripPrice = $this->pricePerKilometer * $distance + $this->pricePerMinute * ($hours * 60 + $minutes);
+        if ($isGPS) {
+          $tripPrice += $this->gpsPrice($hours, $minutes);
+        };
         return $tripPrice;
     }
 };
 
-$tariffBase = new TariffBase(10, 1, 20, '09.11.1974');
-//echo $tariffBase->calculateTripPrice(10, 1, 20, '09.11.1974');
-echo "Age=", $tariffBase->$driverAge;
+$tariffBase = new TariffBase();
+echo $tariffBase->calculateTripPrice(10, 1, 20, 43, true);
 echo "\n";
