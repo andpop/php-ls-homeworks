@@ -192,9 +192,9 @@ class TariffDaily extends A_Tariff
 {
     public function __construct()
     {
-        $this->tariffName = 'Тариф почасовой';
-        $this->pricePerTime = 200;
-        $this->pricePerKilometer = 0;
+        $this->tariffName = 'Тариф суточный';
+        $this->pricePerTime = 1000;
+        $this->pricePerKilometer = 1;
         $this->isGpsAvailable = true;
         $this->isAdditionalDriverAvailable = true;
     }
@@ -205,7 +205,15 @@ class TariffDaily extends A_Tariff
         if ($this->minutes > 0) {
             $hours++;
         };
-        $baseTripPrice = $this->pricePerTime * $hours;
+
+        $time = floor($this->hours / 24);
+        if ($time == 0) {
+            $time = 1;
+        } else {
+            $time += ($this->minutes < 30 ? 0 : 1);
+        };
+
+        $baseTripPrice = $this->pricePerKilometer * $this->distance + $this->pricePerTime * $time;
 
         return $baseTripPrice;
     }
@@ -245,5 +253,8 @@ class TariffStudent extends A_Tariff
 //$tariffHour = new TariffHourly();
 //$tariffHour->calculateTripPrice(10, 1, 20, 15, true, true);
 
-$tariffStudent = new TariffStudent();
-$tariffStudent->calculateTripPrice(10, 1, 20, 20, true, true);
+//$tariffStudent = new TariffStudent();
+//$tariffStudent->calculateTripPrice(10, 1, 20, 20, true, true);
+
+$tariffDaily = new TariffDaily();
+$tariffDaily->calculateTripPrice(10, 25, 20, 20, true, true);
