@@ -3,7 +3,7 @@ interface I_Tariff
 {
     function calculateTripPrice($distance, $hours, $minutes, $age, $isGPS = null, $isAdditionalDriver = null);
     function calculateBaseTripPrice();
-    function calculateAdditionalPrice($baseTripPrice);
+    function calculateAdditionalPrice();
 //    function isValidAge($age);
 //    function isYouthAge($age);
 //    function youthRatePrice($tripPrice);
@@ -40,12 +40,14 @@ abstract class A_Tariff implements I_Tariff
     const MAX_YOUTH_AGE = 21;
     const YOUTH_RATE = 0.1;
 
+    protected $tariffName;
     protected $pricePerKilometer;   // Цена за километр
     protected $pricePerMinute;      // Цена за минуту
     protected $isGpsAvailable = true;
     protected $isAdditionalDriverAvailable = true;
 
     protected $distance, $hours, $minutes, $age, $isGPS = false, $isAdditionalDriver = false;
+    protected $baseTripPrice, $additionalTripPrice, $totalTripPrice;
 
     use AdditionalService;
 
@@ -74,14 +76,36 @@ abstract class A_Tariff implements I_Tariff
         return ($tripPrice * self::YOUTH_RATE);
     }
 
-    public function calculateAdditionalPrice($baseTripPrice)
+    protected function printPriceInfo()
+    {
+        echo $this->tariffName.PHP_EOL;
+        echo '--------------------------------------------'.PHP_EOL;
+        echo "Возраст водителя: {$this->age}".PHP_EOL;
+        echo "Время поездки: {$this->hours} ч. {$this->minutes} мин.".PHP_EOL;
+        echo "Путь: {$this->distance} км".PHP_EOL;
+        if ($this->isGPS) {
+            echo "Дополнительная услуга: GPS".PHP_EOL;
+        };
+        if ($this->isAdditionalDriver) {
+            echo "Дополнительная услуга: второй водитель".PHP_EOL;
+        };
+        echo '--------------------------------------------'.PHP_EOL;
+        echo "Базовая стоимость: {$this->baseTripPrice} руб.".PHP_EOL;
+        echo "Дополнительная стоимость: {$this->additionalTripPrice} руб.".PHP_EOL;
+        echo "Итого: {$this->totalTripPrice} руб.".PHP_EOL;
+    }
+
+    public function calculateAdditionalPrice()
     {
         $additionalPrice = 0;
         if ($this->isGpsAvailable && $this->isGPS) {
             $additionalPrice += $this->gpsPrice($this->hours, $this->minutes);
         };
+        if ($this->isAdditionalDriverAvailable && $this->isAdditionalDriver) {
+            $additionalPrice += $this->additionalDriverPrice();
+        };
         if ($this->isYouthAge($this->age)) {
-          $additionalPrice += $this->youthRatePrice($baseTripPrice);
+          $additionalPrice += $this->youthRatePrice($this->baseTripPrice);
         };
 
         return $additionalPrice;
@@ -94,11 +118,13 @@ abstract class A_Tariff implements I_Tariff
             return -1;
         };
         $this->setTripProperties($distance, $hours, $minutes, $age, $isGPS, $isAdditionalDriver);
-        $baseTripPrice = $this->calculateBaseTripPrice();
-        $additionalTripPrice = $this->calculateAdditionalPrice($baseTripPrice);
-        $tripPrice = $baseTripPrice + $additionalTripPrice;
+        $this->baseTripPrice = $this->calculateBaseTripPrice();
+        $this->additionalTripPrice = $this->calculateAdditionalPrice();
+        $this->totalTripPrice = $this->baseTripPrice + $this->additionalTripPrice;
 
-        return $tripPrice;
+        $this->printPriceInfo();
+
+        return $this->totalTripPrice;
     }
 };
 
@@ -106,6 +132,7 @@ class TariffBase extends A_Tariff
 {
     public function __construct()
     {
+        $this->tariffName = 'Тариф базовый';
         $this->pricePerMinute = 3;
         $this->pricePerKilometer = 10;
         $this->isGpsAvailable = true;
@@ -121,5 +148,4 @@ class TariffBase extends A_Tariff
 };
 
 $tariffBase = new TariffBase();
-echo $tariffBase->calculateTripPrice(10, 1, 20, 20, true);
-echo "\n";
+$tariffBase->calculateTripPrice(10, 1, 20, 20, true);
