@@ -1,7 +1,8 @@
 <?php
 interface I_Tariff
 {
-    public function calculateTripPrice($distance, $hours, $minutes, $age, $isGPS = null, $isAdditionalDriver = null);
+    function calculateTripPrice($distance, $hours, $minutes, $age, $isGPS = null, $isAdditionalDriver = null);
+    function isValidAge($age);
 };
 
 trait AdditionalService
@@ -32,7 +33,15 @@ abstract class A_Tariff implements I_Tariff
     protected $pricePerMinute;      // Цена за минуту
     protected $isGPS = false;
     protected $isAdditionalDriver = false;
+    const MIN_AGE = 18;
+    const MAX_AGE = 65;
 
+    use AdditionalService;
+
+    public function isValidAge($age)
+    {
+        return ($age >= self::MIN_AGE && $age <= self::MAX_AGE);
+    }
 };
 
 class TariffBase extends A_Tariff
@@ -43,10 +52,12 @@ class TariffBase extends A_Tariff
         $this->pricePerKilometer = 10;
     }
 
-    use AdditionalService;
-
     public function calculateTripPrice($distance, $hours, $minutes, $age, $isGPS = null, $isAdditionalDriver = null)
     {
+        if (!$this->isValidAge($age)) {
+          echo "К сожалению, вынуждены отказать Вам в поездке - ограничение по возрасту.";
+          return -1;
+        };
         $tripPrice = $this->pricePerKilometer * $distance + $this->pricePerMinute * ($hours * 60 + $minutes);
         if ($isGPS) {
           $tripPrice += $this->gpsPrice($hours, $minutes);
@@ -56,5 +67,5 @@ class TariffBase extends A_Tariff
 };
 
 $tariffBase = new TariffBase();
-echo $tariffBase->calculateTripPrice(10, 1, 20, 43, true);
+echo $tariffBase->calculateTripPrice(10, 1, 20, 73, true);
 echo "\n";
