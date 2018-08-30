@@ -89,10 +89,10 @@ abstract class A_Tariff implements I_Tariff
         echo "Возраст водителя: {$this->age}".PHP_EOL;
         echo "Время поездки: {$this->hours} ч. {$this->minutes} мин.".PHP_EOL;
         echo "Путь: {$this->distance} км".PHP_EOL;
-        if ($this->isGPS) {
+        if ($this->isGpsAvailable && $this->isGPS) {
             echo "Дополнительная услуга: GPS".PHP_EOL;
         };
-        if ($this->isAdditionalDriver) {
+        if ($this->isAdditionalDriverAvailable && $this->isAdditionalDriver) {
             echo "Дополнительная услуга: второй водитель".PHP_EOL;
         };
         echo '--------------------------------------------'.PHP_EOL;
@@ -232,7 +232,7 @@ class TariffStudent extends A_Tariff
         if ($this->minutes > 0) {
             $hours++;
         };
-        $baseTripPrice = $this->pricePerTime * $hours;
+        $baseTripPrice = $this->pricePerKilometer * $this->distance + $this->pricePerTime * ($this->hours * 60 + $this->minutes);
 
         return $baseTripPrice;
     }
@@ -246,4 +246,4 @@ class TariffStudent extends A_Tariff
 //$tariffHour->calculateTripPrice(10, 1, 20, 15, true, true);
 
 $tariffStudent = new TariffStudent();
-$tariffStudent->calculateTripPrice(10, 1, 20, 27, true, true);
+$tariffStudent->calculateTripPrice(10, 1, 20, 20, true, true);
