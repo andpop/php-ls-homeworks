@@ -238,12 +238,15 @@ class TariffStudent extends A_Tariff
 //=======================================================================================
 $tariffBase = new TariffBase();
 $tariffBase->calculateTripPrice(10, 1, 20, 20, true);
+echo "======================================================================================\n";
 
 $tariffHour = new TariffHourly();
 $tariffHour->calculateTripPrice(10, 1, 20, 15, true, true);
+echo "======================================================================================\n";
 
 $tariffStudent = new TariffStudent();
 $tariffStudent->calculateTripPrice(10, 1, 20, 20, true, true);
+echo "======================================================================================\n";
 
 $tariffDaily = new TariffDaily();
 $tariffDaily->calculateTripPrice(10, 25, 20, 20, true, true);
