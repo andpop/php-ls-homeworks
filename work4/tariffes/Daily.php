@@ -1,5 +1,5 @@
 <?php
-class TariffDaily extends A_Tariff
+class Daily extends A_Tariff
 {
     public function __construct()
     {

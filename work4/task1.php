@@ -5,22 +5,22 @@ require_once 'core/T_AdditionalService.php';
 require_once 'core/A_Tariff.php';
 
 //Loading classes for tariffes
-require_once 'tariffes/TariffBase.php';
-require_once 'tariffes/TariffHourly.php';
-require_once 'tariffes/TariffDaily.php';
-require_once 'tariffes/TariffStudent.php';
+require_once 'tariffes/Base.php';
+require_once 'tariffes/Hourly.php';
+require_once 'tariffes/Daily.php';
+require_once 'tariffes/Student.php';
 
-$tariffBase = new TariffBase();
+$tariffBase = new Base();
 $tariffBase->calculateTripPrice(10, 1, 20, 20, true);
 echo "======================================================================================\n";
 
-$tariffHour = new TariffHourly();
+$tariffHour = new Hourly();
 $tariffHour->calculateTripPrice(10, 1, 20, 15, true, true);
 echo "======================================================================================\n";
 
-$tariffStudent = new TariffStudent();
+$tariffStudent = new Student();
 $tariffStudent->calculateTripPrice(10, 1, 20, 20, true, true);
 echo "======================================================================================\n";
 
-$tariffDaily = new TariffDaily();
+$tariffDaily = new Daily();
 $tariffDaily->calculateTripPrice(10, 25, 20, 20, true, true);

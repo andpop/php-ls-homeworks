@@ -1,5 +1,5 @@
 <?php
-class TariffHourly extends A_Tariff
+class Hourly extends A_Tariff
 {
     public function __construct()
     {

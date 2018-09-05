@@ -1,5 +1,5 @@
 <?php
-class TariffStudent extends A_Tariff
+class Student extends A_Tariff
 {
     public function __construct()
     {
