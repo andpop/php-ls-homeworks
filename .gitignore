@@ -1,0 +1,13 @@
+.idea/
+log/
+composer.phar
+work2/test.txt
+work3/data/data.csv
+work3/data/output.json
+work3/data/output2.json
+work3/data/temp1.csv
+work3/data/temp2.csv
+work4/task1_old.php
+work5/vendor
+work6/vendor
+
