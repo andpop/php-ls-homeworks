@@ -28,8 +28,8 @@ IImage::make($rotatedFile)
 $image = IImage::make($resizedFile);
 $image->text("Очкарик", $image->width()/2,$image->height()/2,
                 function ($font) {
-                $font->file(3);
-                $font->size(72);
+                $font->file('./arial.ttf');
+                $font->size(36);
                 $font->color(array(255, 0, 0, 0.5));
                 $font->align('center');
                 $font->valign('center');
